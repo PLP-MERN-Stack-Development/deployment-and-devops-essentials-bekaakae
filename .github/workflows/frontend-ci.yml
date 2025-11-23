@@ -1,4 +1,4 @@
-name: Backend CI
+name: Frontend CI
 
 on:
   push:
@@ -22,26 +22,33 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: backend/package-lock.json
+        cache-dependency-path: frontend/package-lock.json
         
     - name: Install dependencies
       run: |
-        cd backend
+        cd frontend
         npm ci
         
     - name: Run tests
       run: |
-        cd backend
+        cd frontend
         npm test
-      env:
-        NODE_ENV: test
-        MONGODB_URI: mongodb://localhost:27017/test
+      
+    - name: Build application
+      run: |
+        cd frontend
+        npm run build
 
-  security-scan:
+  lighthouse:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Run security audit
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+    - name: Install Lighthouse
+      run: npm install -g lighthouse
+    - name: Run Lighthouse
       run: |
-        cd backend
-        npm audit --audit-level moderate
+        lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html --chrome-flags="--headless"
