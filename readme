@@ -1,0 +1,356 @@
+🍔 FastFood - Online Food Ordering System
+A modern, full-stack food ordering application built with the MERN stack (MongoDB, Express.js, React, Node.js) featuring real-time order tracking, secure payments, and a beautiful responsive design.
+
+https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&auto=format&fit=crop&q=60
+
+🚀 Live Demo
+Frontend: https://fast-food-frontend.onrender.com/
+
+Backend API: https://fast-food-app-backend.onrender.com/
+
+API Health Check: https://fast-food-app-backend.onrender.com/api/health
+
+✨ Features
+🍕 Browse Menu - Beautiful menu with categories (Burgers, Pizza, Sides, Drinks, Desserts)
+
+🛒 Shopping Cart - Add/remove items, quantity management
+
+💳 Secure Checkout - Mock payment processing
+
+📱 Real-time Order Tracking - Live status updates
+
+⚡ Fast Performance - Built with Vite and React
+
+🎨 Modern UI - Tailwind CSS design
+
+📱 Responsive - Works on all devices
+
+🔒 Secure - Helmet.js, CORS, rate limiting
+
+📊 Monitoring - Health checks and uptime monitoring
+
+🛠️ Tech Stack
+Frontend
+React 18 - UI framework
+
+Vite - Build tool and dev server
+
+Tailwind CSS - Styling
+
+React Router - Navigation
+
+Axios - HTTP client
+
+Lucide React - Icons
+
+React Hot Toast - Notifications
+
+Backend
+Node.js - Runtime environment
+
+Express.js - Web framework
+
+MongoDB - Database
+
+Mongoose - ODM
+
+Helmet.js - Security headers
+
+CORS - Cross-origin requests
+
+Rate Limiting - API protection
+
+Deployment & DevOps
+Render - Cloud platform
+
+MongoDB Atlas - Cloud database
+
+GitHub Actions - CI/CD
+
+Vercel - Frontend hosting (alternative)
+
+📁 Project Structure
+text
+fast-food-app/
+├── .github/workflows/          # CI/CD pipelines
+│   ├── backend-ci.yml
+│   └── frontend-ci.yml
+├── backend/                    # Express.js backend
+│   ├── models/                # MongoDB models
+│   │   ├── MenuItem.js
+│   │   └── Order.js
+│   ├── routes/                # API routes
+│   │   ├── menu.js
+│   │   ├── orders.js
+│   │   └── payment.js
+│   ├── middleware/            # Custom middleware
+│   │   ├── errorHandler.js
+│   │   └── asyncHandler.js
+│   ├── deployment/            # Deployment scripts
+│   │   └── seed-data.js
+│   ├── server.js              # Main server file
+│   ├── package.json
+│   └── .env                   # Environment variables
+├── frontend/                  # React frontend
+│   ├── src/
+│   │   ├── components/        # React components
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   └── LoadingSpinner.jsx
+│   │   ├── pages/             # Page components
+│   │   │   ├── Home.jsx
+│   │   │   ├── Menu.jsx
+│   │   │   ├── Cart.jsx
+│   │   │   └── OrderTracking.jsx
+│   │   ├── context/           # React context
+│   │   │   └── CartContext.jsx
+│   │   ├── hooks/             # Custom hooks
+│   │   │   ├── useLocalStorage.jsx
+│   │   │   └── useApi.jsx
+│   │   ├── services/          # API services
+│   │   │   └── api.js
+│   │   ├── utils/             # Utility functions
+│   │   │   ├── format.js
+│   │   │   └── validation.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── package.json
+│   ├── vite.config.js
+│   └── tailwind.config.js
+├── monitoring/                # Monitoring scripts
+│   └── uptime-monitor.js
+├── README.md
+└── package.json              # Root package.json (monorepo)
+🚀 Deployment Guide
+Backend Deployment on Render
+Prerequisites
+Render account
+
+MongoDB Atlas account
+
+GitHub repository with your code
+
+Step-by-Step Deployment
+Go to Render Dashboard
+
+Create New Web Service
+
+Click "New +" button
+
+Select "Web Service"
+
+Connect your GitHub repository
+
+Configure Backend Service
+
+yaml
+Name: fast-food-backend
+Environment: Node
+Region: Ohio (or closest to your users)
+Branch: main
+Root Directory: backend
+Build Command: npm install
+Start Command: npm start
+Set Environment Variables
+
+env
+NODE_ENV=production
+PORT=10000
+MONGODB_URI=your_mongodb_atlas_connection_string
+FRONTEND_URL=https://your-frontend-app.onrender.com
+Create Service
+
+Click "Create Web Service"
+
+Wait for deployment to complete
+
+Frontend Deployment on Render
+Create New Static Site
+
+Click "New +" button
+
+Select "Static Site"
+
+Connect your GitHub repository
+
+Configure Frontend Service
+
+yaml
+Name: fast-food-frontend
+Root Directory: frontend
+Build Command: npm run build
+Publish Directory: frontend/dist
+Set Environment Variables
+
+env
+VITE_API_BASE_URL=https://your-backend-api.onrender.com/api
+Create Static Site
+
+Click "Create Static Site"
+
+Wait for deployment
+
+MongoDB Atlas Setup
+Create MongoDB Atlas Account
+
+Go to mongodb.com/cloud/atlas
+
+Sign up for free
+
+Create Cluster
+
+Choose free tier (M0)
+
+Select cloud provider and region
+
+Create cluster
+
+Database Access
+
+Go to "Database Access"
+
+Create new database user
+
+Set username and password
+
+Network Access
+
+Go to "Network Access"
+
+Add IP address: 0.0.0.0/0 (allow all IPs)
+
+Get Connection String
+
+Go to "Clusters"
+
+Click "Connect"
+
+Choose "Connect your application"
+
+Copy connection string
+
+Replace <password> with your database user password
+
+🔧 Environment Variables
+Backend (.env)
+env
+NODE_ENV=production
+PORT=10000
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/fastfood?retryWrites=true&w=majority
+FRONTEND_URL=https://your-frontend-app.onrender.com
+Frontend (.env)
+env
+VITE_API_BASE_URL=https://your-backend-api.onrender.com/api
+VITE_APP_NAME=FastFood App
+VITE_APP_VERSION=1.0.0
+📊 API Documentation
+Base URL
+text
+https://your-backend-api.onrender.com/api
+Endpoints
+Menu
+GET /menu - Get all menu items
+
+GET /menu/:id - Get specific menu item
+
+Orders
+POST /orders - Create new order
+
+GET /orders - Get all orders
+
+GET /orders/:id - Get specific order
+
+PATCH /orders/:id/status - Update order status
+
+Payment
+POST /payment/process - Process payment
+
+Health
+GET /health - Health check endpoint
+
+🚀 Local Development
+Prerequisites
+Node.js 18+
+
+MongoDB (local or Atlas)
+
+Installation
+Clone the repository
+
+bash
+git clone https://github.com/yourusername/fast-food-app.git
+cd fast-food-app
+Install dependencies
+
+bash
+npm run install:all
+Set up environment variables
+
+bash
+# Backend
+cd backend
+cp .env.example .env
+# Edit .env with your values
+
+# Frontend
+cd ../frontend
+cp .env.example .env
+Start development servers
+
+bash
+# Start both frontend and backend
+npm run dev
+
+# Or start separately
+npm run dev:backend  # http://localhost:5000
+npm run dev:frontend # http://localhost:3000
+Seed database (optional)
+
+bash
+npm run seed:database
+🧪 Testing
+bash
+# Run all tests
+npm test
+
+# Run backend tests
+npm run test:backend
+
+# Run frontend tests
+npm run test:frontend
+📈 Monitoring
+The application includes health checks and monitoring:
+
+bash
+# Start monitoring
+npm run monitor
+Health check endpoint: GET /api/health
+
+🤝 Contributing
+Fork the project
+
+Create your feature branch (git checkout -b feature/AmazingFeature)
+
+Commit your changes (git commit -m 'Add some AmazingFeature')
+
+Push to the branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+🙏 Acknowledgments
+Icons by Lucide React
+
+UI components with Tailwind CSS
+
+Images from Unsplash
+
+Deployment on Render
+
+📞 Support
+If you have any questions or need help with deployment, please open an issue or contact the development team.
+
+Happy Ordering! 🍕🚀
